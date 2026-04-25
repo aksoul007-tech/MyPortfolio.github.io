@@ -4,7 +4,7 @@ const ctx = canvas.getContext('2d');
 
 let width, height;
 let fireflies = [];
-const numFireflies = window.innerWidth < 768 ? 80 : 150; // Increased for more density
+const numFireflies = window.innerWidth < 768 ? 80 : 150;
 
 function resizeCanvas() {
     width = window.innerWidth;
@@ -17,34 +17,23 @@ class Firefly {
     constructor() {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
-        // Size variation (bigger now)
         this.size = Math.random() * 4 + 1.5;
-        
-        // Base Drift speed (faster now)
-        this.baseSpeedX = (Math.random() - 0.5) * 2.5;
-        this.baseSpeedY = (Math.random() - 0.5) * 2.5;
-        this.speedX = this.baseSpeedX;
-        this.speedY = this.baseSpeedY;
-        
-        // Glow opacity
+        this.speedX = (Math.random() - 0.5) * 2.5;
+        this.speedY = (Math.random() - 0.5) * 2.5;
         this.opacity = Math.random();
-        this.baseFadeSpeed = Math.random() * 0.04 + 0.01;
-        this.fadeSpeed = this.baseFadeSpeed;
+        this.fadeSpeed = Math.random() * 0.04 + 0.01;
         this.fadingOut = Math.random() > 0.5;
     }
 
     update() {
-        // Movement
         this.x += this.speedX;
         this.y += this.speedY;
 
-        // Wrap around screen
         if (this.x < 0) this.x = width;
         if (this.x > width) this.x = 0;
         if (this.y < 0) this.y = height;
         if (this.y > height) this.y = 0;
 
-        // Pulsing glow effect
         if (this.fadingOut) {
             this.opacity -= this.fadeSpeed;
             if (this.opacity <= 0.1) this.fadingOut = false;
@@ -57,9 +46,7 @@ class Firefly {
     draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        // Neon green fill
         ctx.fillStyle = `rgba(74, 222, 128, ${this.opacity})`;
-        // Massive Glow effect
         ctx.shadowBlur = this.size * 15;
         ctx.shadowColor = 'rgba(74, 222, 128, 1)';
         ctx.fill();
@@ -75,9 +62,7 @@ function initFireflies() {
 }
 
 function animateFireflies() {
-    // Clear canvas with a very slight trail effect
     ctx.clearRect(0, 0, width, height);
-    
     for (let i = 0; i < fireflies.length; i++) {
         fireflies[i].update();
         fireflies[i].draw();
@@ -85,7 +70,6 @@ function animateFireflies() {
     requestAnimationFrame(animateFireflies);
 }
 
-// Initialize and handle resize
 window.addEventListener('resize', () => {
     resizeCanvas();
 });
@@ -93,42 +77,54 @@ window.addEventListener('resize', () => {
 initFireflies();
 animateFireflies();
 
-// === Toggle Animation System Power Logic ===
-let isHyperMode = false;
-const toggleSwitch = document.getElementById('power-toggle');
-const powerStatusText = document.getElementById('power-status');
+// === Typewriter Animation System ===
+const quotes = [
+    "Passion fuels the journey.",
+    "Determination overcomes obstacles.",
+    "Continuous learning is the ultimate life skill.",
+    "Innovate to elevate.",
+    "Master the craft."
+];
+let quoteIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+const typewriterElement = document.getElementById('typewriter-text');
 
-if (toggleSwitch) {
-    toggleSwitch.addEventListener('click', () => {
-        toggleSwitch.classList.toggle('active');
-        isHyperMode = !isHyperMode;
-        
-        if (isHyperMode) {
-            powerStatusText.innerText = "OVERDRIVE";
-            powerStatusText.style.color = "var(--accent)";
-            powerStatusText.style.textShadow = "0 0 15px var(--accent-glow)";
-        } else {
-            powerStatusText.innerText = "Normal";
-            powerStatusText.style.color = "var(--text-muted)";
-            powerStatusText.style.textShadow = "none";
-        }
+function typeWriter() {
+    if (!typewriterElement) return;
 
-        // Apply effect to fireflies
-        fireflies.forEach(f => {
-            if (isHyperMode) {
-                // Move extremely fast, blink faster
-                f.speedX = f.baseSpeedX * 5;
-                f.speedY = f.baseSpeedY * 5;
-                f.fadeSpeed = f.baseFadeSpeed * 3;
-            } else {
-                // Return to normal
-                f.speedX = f.baseSpeedX;
-                f.speedY = f.baseSpeedY;
-                f.fadeSpeed = f.baseFadeSpeed;
-            }
-        });
-    });
+    const currentQuote = quotes[quoteIndex];
+    
+    if (isDeleting) {
+        typewriterElement.textContent = currentQuote.substring(0, charIndex - 1);
+        charIndex--;
+    } else {
+        typewriterElement.textContent = currentQuote.substring(0, charIndex + 1);
+        charIndex++;
+    }
+    
+    let typeSpeed = 70; // Typing speed
+    
+    if (isDeleting) {
+        typeSpeed /= 2; // Delete faster
+    }
+    
+    if (!isDeleting && charIndex === currentQuote.length) {
+        // Pause at the end of typing
+        typeSpeed = 2500; 
+        isDeleting = true;
+    } else if (isDeleting && charIndex === 0) {
+        // Move to next quote
+        isDeleting = false;
+        quoteIndex = (quoteIndex + 1) % quotes.length;
+        typeSpeed = 500; // Pause before typing next quote
+    }
+    
+    setTimeout(typeWriter, typeSpeed);
 }
+
+// Start typewriter effect after a short delay
+setTimeout(typeWriter, 1500);
 
 // === Scroll Reveal Animations ===
 const observerOptions = {
