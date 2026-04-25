@@ -77,54 +77,6 @@ window.addEventListener('resize', () => {
 initFireflies();
 animateFireflies();
 
-// === Typewriter Animation System ===
-const quotes = [
-    "Passion fuels the journey.",
-    "Determination overcomes obstacles.",
-    "Continuous learning is the ultimate life skill.",
-    "Innovate to elevate.",
-    "Master the craft."
-];
-let quoteIndex = 0;
-let charIndex = 0;
-let isDeleting = false;
-const typewriterElement = document.getElementById('typewriter-text');
-
-function typeWriter() {
-    if (!typewriterElement) return;
-
-    const currentQuote = quotes[quoteIndex];
-    
-    if (isDeleting) {
-        typewriterElement.textContent = currentQuote.substring(0, charIndex - 1);
-        charIndex--;
-    } else {
-        typewriterElement.textContent = currentQuote.substring(0, charIndex + 1);
-        charIndex++;
-    }
-    
-    let typeSpeed = 70; // Typing speed
-    
-    if (isDeleting) {
-        typeSpeed /= 2; // Delete faster
-    }
-    
-    if (!isDeleting && charIndex === currentQuote.length) {
-        // Pause at the end of typing
-        typeSpeed = 2500; 
-        isDeleting = true;
-    } else if (isDeleting && charIndex === 0) {
-        // Move to next quote
-        isDeleting = false;
-        quoteIndex = (quoteIndex + 1) % quotes.length;
-        typeSpeed = 500; // Pause before typing next quote
-    }
-    
-    setTimeout(typeWriter, typeSpeed);
-}
-
-// Start typewriter effect after a short delay
-setTimeout(typeWriter, 1500);
 
 // === Scroll Reveal Animations ===
 const observerOptions = {
