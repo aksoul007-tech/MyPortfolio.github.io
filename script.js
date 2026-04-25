@@ -98,13 +98,47 @@ document.querySelectorAll('.fade-in').forEach(element => {
     observer.observe(element);
 });
 
-// === Navigation Scroll Effect ===
-const nav = document.querySelector('nav');
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        nav.classList.add('scrolled');
-    } else {
-        nav.classList.remove('scrolled');
+});
+
+// === Certificate Modal Logic ===
+const modal = document.getElementById('cert-modal');
+const modalImg = document.getElementById('modal-img');
+const closeBtn = document.querySelector('.modal-close');
+
+// Open Modal
+document.querySelectorAll('.cert-card').forEach(card => {
+    card.addEventListener('click', () => {
+        const imgSrc = card.getAttribute('data-img');
+        if(imgSrc) {
+            modalImg.src = imgSrc;
+            modal.style.display = 'flex';
+            // Slight delay for transition to work
+            setTimeout(() => {
+                modal.classList.add('show');
+            }, 10);
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+    });
+});
+
+// Close Modal Function
+function closeModal() {
+    modal.classList.remove('show');
+    setTimeout(() => {
+        modal.style.display = 'none';
+        modalImg.src = '';
+        document.body.style.overflow = 'auto';
+    }, 300);
+}
+
+if(closeBtn) {
+    closeBtn.addEventListener('click', closeModal);
+}
+
+// Close when clicking outside the image
+window.addEventListener('click', (e) => {
+    if (e.target === modal) {
+        closeModal();
     }
 });
 
