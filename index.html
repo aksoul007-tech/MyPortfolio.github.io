@@ -11,9 +11,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Background Canvas for Fireflies -->
+    <!-- Background Canvas for Glowing Fireflies -->
     <canvas id="fireflies"></canvas>
     <div class="overlay"></div>
+
+    <!-- 3D Floating Elements -->
+    <div class="shape-3d shape-1"></div>
+    <div class="shape-3d shape-2"></div>
+    <div class="shape-3d shape-3"></div>
 
     <nav>
         <div class="logo">OS.</div>
@@ -35,8 +40,8 @@
         <section id="hero" class="fade-in">
             <div class="hero-content">
                 <h1>Hi, I'm <span class="highlight">Om Swami</span></h1>
-                <h2>B.Tech IT Student & Tech Innovator</h2>
-                <p>Navigating the digital frontier. Passionate about building secure, innovative technology solutions and expanding my expertise in software, cybersecurity, and artificial intelligence.</p>
+                <h2>B.Tech IT Student | Hardware & Software Architect</h2>
+                <p>Navigating the digital frontier with an insatiable curiosity. I don't just write code; I architect systems that bridge the physical and digital worlds. From crafting intricate embedded hardware to securing networks against modern cyber threats, I am dedicated to pushing the boundaries of what technology can achieve. Join me on my journey through code, circuits, and cybersecurity.</p>
                 <div class="hero-buttons">
                     <a href="#about" class="cta-btn primary">Explore My Journey</a>
                     <a href="#contact" class="cta-btn secondary">Contact Me</a>
@@ -44,19 +49,54 @@
             </div>
         </section>
 
+        <!-- Quotes Marquee Animation -->
+        <div class="quote-marquee fade-in">
+            <div class="marquee-content">
+                <span>Passion fuels the journey</span>
+                <span>•</span>
+                <span>Determination overcomes obstacles</span>
+                <span>•</span>
+                <span>Continuous learning is the ultimate life skill</span>
+                <span>•</span>
+                <span>Innovate to elevate</span>
+                <span>•</span>
+                <span>Master the craft</span>
+                <span>•</span>
+                <span>Embrace the challenge</span>
+                <span>•</span>
+                <span>Passion fuels the journey</span>
+                <span>•</span>
+                <span>Determination overcomes obstacles</span>
+                <span>•</span>
+                <span>Continuous learning is the ultimate life skill</span>
+            </div>
+        </div>
+
         <section id="about" class="fade-in">
-            <h2 class="section-title">About Me</h2>
+            <h2 class="section-title">The Architect Behind the Screen</h2>
+            
+            <div class="toggle-container">
+                <span class="toggle-label" style="margin-right: 1rem;">System Power</span>
+                <div class="toggle-switch" id="power-toggle">
+                    <div class="toggle-knob"></div>
+                </div>
+                <span class="toggle-label" id="power-status">Normal</span>
+            </div>
+
             <div class="about-content glass-card">
                 <div class="about-text">
                     <div class="info-badge">Age: 20</div>
                     <div class="info-badge">Location: Solapur, India</div>
-                    <div class="info-badge">Email: swamiom1052005@gmail.com</div>
+                    <div class="info-badge">Email: swamiom1052006@gmail.com</div>
+                    <div class="info-badge">Phone: +91 9325100343</div>
                     
-                    <h3 class="subsection-title">Career Objective</h3>
-                    <p>Motivated B.Tech Information Technology student with a robust foundation in electronics hardware, embedded systems, and programming. I am driven by the desire to architect innovative technological solutions, bridging the gap between hardware and software. My continuous goal is to grow profoundly in the realms of cybersecurity, AI, and modern web technologies.</p>
+                    <h3 class="subsection-title">Career Objective & Vision</h3>
+                    <p><strong>I am a deeply passionate technologist</strong> with a relentless drive for understanding how things work beneath the surface. My journey began with a profound interest in electronics, earning me a Diploma in Electronics and Telecommunication, and now rapidly advancing into a B.Tech in Information Technology.</p>
+                    <br>
+                    <p><strong>I firmly believe that true innovation happens at the intersection of disciplines.</strong> I seamlessly blend my knowledge of computer hardware, embedded systems, and Linux with modern software paradigms. <strong>My ultimate goal is to become a highly versatile engineer</strong> capable of designing secure, intelligent, and hyper-efficient architectures. I am actively expanding my expertise in Artificial Intelligence and Cybersecurity to tackle the complex challenges of tomorrow's digital landscape.</p>
                 </div>
                 <div class="education">
-                    <h3 class="subsection-title">Education</h3>
+                    <h3 class="subsection-title">Academic Journey</h3>
                     <div class="timeline">
                         <div class="timeline-item">
                             <h4>B.Tech in Information Technology (2nd Year)</h4>
@@ -84,17 +124,17 @@
                 <div class="skill-card glass-card">
                     <div class="skill-icon">💻</div>
                     <h3>Programming</h3>
-                    <p>C programming, Arduino programming, problem-solving and algorithms.</p>
+                    <p>C programming, Arduino programming, algorithms and problem-solving paradigms.</p>
                 </div>
                 <div class="skill-card glass-card">
                     <div class="skill-icon">🌐</div>
                     <h3>Networking & Security</h3>
-                    <p>Linux basics, Cisco Packet Tracer, core networking concepts, cybersecurity fundamentals.</p>
+                    <p>Linux operations, Cisco Packet Tracer, core networking, and fundamental cybersecurity.</p>
                 </div>
                 <div class="skill-card glass-card">
                     <div class="skill-icon">🧠</div>
                     <h3>Emerging Tech</h3>
-                    <p>Modern AI concepts, continuous learning in software development ecosystems.</p>
+                    <p>Modern Artificial Intelligence concepts, exploring intelligent systems and automation.</p>
                 </div>
             </div>
         </section>
@@ -107,7 +147,7 @@
                         <h3>Smart Medicine Dispenser</h3>
                         <span class="project-role">Final Year Diploma Project</span>
                     </div>
-                    <p>Engineered an automated medicine dispensing system utilizing embedded systems, electronic circuits, and Arduino programming to ensure timely medication delivery and improve patient care.</p>
+                    <p>Engineered an automated medicine dispensing system utilizing embedded systems, electronic circuits, and Arduino programming. This system drastically improved medical compliance by ensuring timely and accurate medication delivery.</p>
                     <div class="tags">
                         <span class="tag">Arduino</span>
                         <span class="tag">Embedded Systems</span>
@@ -118,7 +158,7 @@
                 <div class="achievement-card glass-card">
                     <div class="card-header">
                         <h3>Hall of Fame</h3>
-                        <span class="project-role">Competitions</span>
+                        <span class="project-role">Competitive Recognition</span>
                     </div>
                     <ul class="achievement-list">
                         <li>
@@ -142,7 +182,7 @@
 
         <section id="certifications" class="fade-in">
             <h2 class="section-title">Certifications</h2>
-            <p class="section-subtitle">Validating my knowledge through industry-recognized credentials.</p>
+            <p class="section-subtitle">Validating my technical prowess through industry-recognized credentials.</p>
             <div class="cert-grid">
                 <div class="cert-card glass-card">
                     <div class="cert-icon">🛡️</div>
@@ -187,10 +227,19 @@
         </section>
         
         <section id="contact" class="fade-in">
-            <h2 class="section-title">Connect With Me</h2>
+            <div class="inspirational-quote glass-card">
+                <h3>"Innovation is the ability to see change as an opportunity, not a threat. Secure the present, innovate the future."</h3>
+                <div class="quote-author">- The Digital Frontier</div>
+            </div>
+
+            <h2 class="section-title" style="margin-top: 3rem;">Connect With Me</h2>
             <div class="contact-card glass-card">
-                <p>Interested in collaborating or have an opportunity? I'm always open to discussing tech, cybersecurity, and new projects.</p>
-                <a href="mailto:swamiom1052005@gmail.com" class="cta-btn primary contact-btn">Drop an Email</a>
+                <p>Have a project in mind, a security challenge, or just want to discuss the future of AI and hardware? I am ready to collaborate.</p>
+                <div class="contact-details" style="text-align: left; background: rgba(0,0,0,0.3); padding: 1.5rem; border-radius: 10px; margin-bottom: 2rem;">
+                    <p style="margin-bottom: 0.5rem;"><strong style="color: var(--accent);">Email:</strong> swamiom1052006@gmail.com</p>
+                    <p><strong style="color: var(--accent);">Phone:</strong> +91 9325100343</p>
+                </div>
+                <a href="mailto:swamiom1052006@gmail.com" class="cta-btn primary contact-btn">Drop an Email</a>
             </div>
         </section>
     </main>
@@ -205,4 +254,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
