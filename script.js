@@ -4,7 +4,7 @@ const ctx = canvas.getContext('2d');
 
 let width, height;
 let fireflies = [];
-const numFireflies = window.innerWidth < 768 ? 60 : 120; // Adjust for mobile
+const numFireflies = window.innerWidth < 768 ? 80 : 150; // Increased for more density
 
 function resizeCanvas() {
     width = window.innerWidth;
@@ -17,14 +17,19 @@ class Firefly {
     constructor() {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
-        // Size variation
-        this.size = Math.random() * 2 + 0.5;
-        // Drift speed
-        this.speedX = (Math.random() - 0.5) * 0.8;
-        this.speedY = (Math.random() - 0.5) * 0.8;
+        // Size variation (bigger now)
+        this.size = Math.random() * 4 + 1.5;
+        
+        // Base Drift speed (faster now)
+        this.baseSpeedX = (Math.random() - 0.5) * 2.5;
+        this.baseSpeedY = (Math.random() - 0.5) * 2.5;
+        this.speedX = this.baseSpeedX;
+        this.speedY = this.baseSpeedY;
+        
         // Glow opacity
         this.opacity = Math.random();
-        this.fadeSpeed = Math.random() * 0.02 + 0.005;
+        this.baseFadeSpeed = Math.random() * 0.04 + 0.01;
+        this.fadeSpeed = this.baseFadeSpeed;
         this.fadingOut = Math.random() > 0.5;
     }
 
@@ -54,9 +59,9 @@ class Firefly {
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         // Neon green fill
         ctx.fillStyle = `rgba(74, 222, 128, ${this.opacity})`;
-        // Glow effect
-        ctx.shadowBlur = this.size * 5;
-        ctx.shadowColor = 'rgba(74, 222, 128, 0.8)';
+        // Massive Glow effect
+        ctx.shadowBlur = this.size * 15;
+        ctx.shadowColor = 'rgba(74, 222, 128, 1)';
         ctx.fill();
     }
 }
@@ -83,26 +88,59 @@ function animateFireflies() {
 // Initialize and handle resize
 window.addEventListener('resize', () => {
     resizeCanvas();
-    // Don't recreate all fireflies on resize to maintain continuity, 
-    // just let them wrap to new bounds
 });
 
 initFireflies();
 animateFireflies();
 
+// === Toggle Animation System Power Logic ===
+let isHyperMode = false;
+const toggleSwitch = document.getElementById('power-toggle');
+const powerStatusText = document.getElementById('power-status');
+
+if (toggleSwitch) {
+    toggleSwitch.addEventListener('click', () => {
+        toggleSwitch.classList.toggle('active');
+        isHyperMode = !isHyperMode;
+        
+        if (isHyperMode) {
+            powerStatusText.innerText = "OVERDRIVE";
+            powerStatusText.style.color = "var(--accent)";
+            powerStatusText.style.textShadow = "0 0 15px var(--accent-glow)";
+        } else {
+            powerStatusText.innerText = "Normal";
+            powerStatusText.style.color = "var(--text-muted)";
+            powerStatusText.style.textShadow = "none";
+        }
+
+        // Apply effect to fireflies
+        fireflies.forEach(f => {
+            if (isHyperMode) {
+                // Move extremely fast, blink faster
+                f.speedX = f.baseSpeedX * 5;
+                f.speedY = f.baseSpeedY * 5;
+                f.fadeSpeed = f.baseFadeSpeed * 3;
+            } else {
+                // Return to normal
+                f.speedX = f.baseSpeedX;
+                f.speedY = f.baseSpeedY;
+                f.fadeSpeed = f.baseFadeSpeed;
+            }
+        });
+    });
+}
+
 // === Scroll Reveal Animations ===
 const observerOptions = {
     root: null,
     rootMargin: '0px',
-    threshold: 0.15 // Trigger when 15% of element is visible
+    threshold: 0.15 
 };
 
 const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('visible');
-            // Optional: Stop observing once revealed
-            // observer.unobserve(entry.target);
         }
     });
 }, observerOptions);
@@ -128,7 +166,6 @@ const navLinks = document.querySelector('.nav-links');
 if(hamburger) {
     hamburger.addEventListener('click', () => {
         navLinks.classList.toggle('active');
-        // Simple animation for hamburger icon
         hamburger.classList.toggle('toggle');
     });
 }
