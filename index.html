@@ -160,52 +160,40 @@
             <h2 class="section-title">Certifications</h2>
             <p class="section-subtitle">Validating my technical prowess through industry-recognized credentials.</p>
             <div class="cert-grid">
-                <a href="intro_cybersecurity.jpg" target="_blank" class="cert-card glass-card" style="text-decoration: none; color: inherit;">
-                    <div class="cert-icon">🛡️</div>
+                <div class="cert-card glass-card" data-img="intro_cybersecurity.jpg">
+                    <img src="intro_cybersecurity.jpg" alt="Introduction to Cybersecurity" class="cert-thumb" onerror="this.style.display='none'">
                     <h3>Introduction to Cybersecurity</h3>
                     <p class="cert-issuer">Cisco Networking Academy</p>
-                    <p style="color: var(--accent); margin-top: 1rem; font-size: 0.9rem;">Click to view ↗</p>
-                </a>
-                <a href="computer_hardware_basics.jpg" target="_blank" class="cert-card glass-card" style="text-decoration: none; color: inherit;">
-                    <div class="cert-icon">🖥️</div>
+                    <p class="view-hint">Click to enlarge</p>
+                </div>
+                <div class="cert-card glass-card" data-img="computer_hardware_basics.jpg">
+                    <img src="computer_hardware_basics.jpg" alt="Computer Hardware Basics" class="cert-thumb" onerror="this.style.display='none'">
                     <h3>Computer Hardware Basics</h3>
                     <p class="cert-issuer">Cisco Networking Academy</p>
                     <p class="cert-date">Dec 2025</p>
-                    <p style="color: var(--accent); margin-top: 1rem; font-size: 0.9rem;">Click to view ↗</p>
-                </a>
-                <a href="modern_ai.jpg" target="_blank" class="cert-card glass-card" style="text-decoration: none; color: inherit;">
-                    <div class="cert-icon">🤖</div>
+                    <p class="view-hint">Click to enlarge</p>
+                </div>
+                <div class="cert-card glass-card" data-img="modern_ai.jpg">
+                    <img src="modern_ai.jpg" alt="Introduction to Modern AI" class="cert-thumb" onerror="this.style.display='none'">
                     <h3>Introduction to Modern AI</h3>
                     <p class="cert-issuer">Cisco Networking Academy</p>
                     <p class="cert-date">Dec 2025</p>
-                    <p style="color: var(--accent); margin-top: 1rem; font-size: 0.9rem;">Click to view ↗</p>
-                </a>
-                <a href="it_essentials.jpg" target="_blank" class="cert-card glass-card" style="text-decoration: none; color: inherit;">
-                    <div class="cert-icon">⚙️</div>
+                    <p class="view-hint">Click to enlarge</p>
+                </div>
+                <div class="cert-card glass-card" data-img="it_essentials.jpg">
+                    <img src="it_essentials.jpg" alt="IT Essentials" class="cert-thumb" onerror="this.style.display='none'">
                     <h3>IT Essentials</h3>
                     <p class="cert-issuer">Cisco Networking Academy</p>
                     <p class="cert-date">Dec 2025</p>
-                    <p style="color: var(--accent); margin-top: 1rem; font-size: 0.9rem;">Click to view ↗</p>
-                </a>
-                <a href="cisco_packet_tracer.jpg" target="_blank" class="cert-card glass-card" style="text-decoration: none; color: inherit;">
-                    <div class="cert-icon">📡</div>
-                    <h3>Cisco Packet Tracer</h3>
-                    <p class="cert-issuer">Cisco Networking Academy</p>
-                    <p style="color: var(--accent); margin-top: 1rem; font-size: 0.9rem;">Click to view ↗</p>
-                </a>
-                <a href="linux_unhatched.jpg" target="_blank" class="cert-card glass-card" style="text-decoration: none; color: inherit;">
-                    <div class="cert-icon">🐧</div>
-                    <h3>Linux Unhatched</h3>
-                    <p class="cert-issuer">Cisco Networking Academy</p>
-                    <p style="color: var(--accent); margin-top: 1rem; font-size: 0.9rem;">Click to view ↗</p>
-                </a>
-                <a href="yuva_ai_for_all.jpg" target="_blank" class="cert-card glass-card" style="text-decoration: none; color: inherit;">
-                    <div class="cert-icon">🌟</div>
+                    <p class="view-hint">Click to enlarge</p>
+                </div>
+                <div class="cert-card glass-card" data-img="yuva_ai_for_all.jpg">
+                    <img src="yuva_ai_for_all.jpg" alt="Yuva AI for All" class="cert-thumb" onerror="this.style.display='none'">
                     <h3>Yuva AI for All</h3>
                     <p class="cert-issuer">NASSCOM FutureSkills</p>
                     <p class="cert-date">Feb 2026</p>
-                    <p style="color: var(--accent); margin-top: 1rem; font-size: 0.9rem;">Click to view ↗</p>
-                </a>
+                    <p class="view-hint">Click to enlarge</p>
+                </div>
             </div>
         </section>
         
@@ -233,7 +221,12 @@
         </div>
     </footer>
 
+    <!-- Certificate Modal -->
+    <div id="cert-modal" class="modal">
+        <span class="modal-close">&times;</span>
+        <img class="modal-content" id="modal-img" alt="Certificate Preview">
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
-
